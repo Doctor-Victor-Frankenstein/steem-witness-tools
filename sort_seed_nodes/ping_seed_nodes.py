@@ -32,6 +32,7 @@ unofficial_seed_nodes = [
 
 if __name__ == "__main__":
     
+    parser = argparse.ArgumentParser()
     parser.add_argument('--input', nargs='?', const=1, type=str, default="seednodes.txt")
     parser.add_argument("--maxdelay", help="Defines the maximum allowed delay in ms", nargs='?', const=1, type=int, default=100)
     args = parser.parse_args()    
