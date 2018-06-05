@@ -64,7 +64,7 @@ if __name__ == "__main__":
         else:
             node["delay_ms"] = 100e3
         node_list.append(node)
-    sorted_nodes = sorted(node_list, key=lambda node: node['delay_ms'], reverse=True)
+    sorted_nodes = sorted(node_list, key=lambda node: node['delay_ms'], reverse=False)
     for node in sorted_nodes:
         if node["delay_ms"] == 100e3:
             continue
