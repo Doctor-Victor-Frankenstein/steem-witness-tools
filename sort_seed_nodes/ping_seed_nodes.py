@@ -33,15 +33,16 @@ unofficial_seed_nodes = [
 if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input', nargs='?', const=1, type=str, default="seednodes.txt")
+    parser.add_argument('--input', help="seednodes.txt file from steem github", nargs='?', const=1, type=str, default="seednodes.txt")
     parser.add_argument("--maxdelay", help="Defines the maximum allowed delay in ms", nargs='?', const=1, type=int, default=100)
     args = parser.parse_args()    
     
     seed_nodes_list = args.input
     allowed_max_delay_ms = args.maxdelay
-    today = '%d/%d/%d' % (date.today().day, date.today().month, date.today().year)
+    today = '%d_%d_%d' % (date.today().day, date.today().month, date.today().year)
     filename_out = "sorted_seednodes_%s.txt" % today
-    
+    print("Max delay in ms is %d" % allowed_max_delay_ms)
+    print("reading %s" % seed_nodes_list)
     
     with open(seed_nodes_list) as f:
         content = f.readlines()
