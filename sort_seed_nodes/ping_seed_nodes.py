@@ -1,4 +1,6 @@
 from ping3 import ping, verbose_ping
+from datetime import datetime, timedelta, date
+
 unofficial_seed_nodes = [
     {'url': 'steemseed-fin.privex.io', 'port': 2001, 'owner': 'privex'},
     {'url': 'gtg.steem.house', 'port': 2001, 'owner': 'gtg'},
@@ -65,10 +67,18 @@ if __name__ == "__main__":
             node["delay_ms"] = 100e3
         node_list.append(node)
     sorted_nodes = sorted(node_list, key=lambda node: node['delay_ms'], reverse=False)
+    
+    today = '%d/%d/%d' % (date.today().day, date.today().month, date.today().year)
+    filename_out = "sorted_seednodes_today.txt"
+    f = open(filename_out, 'w')
+    
     for node in sorted_nodes:
         if node["delay_ms"] == 100e3:
             continue
         if node["delay_ms"] > allowed_max_delay_ms:
             continue
         spaces = 30 - len(node["url"]) - 1 - len(str(node["port"]))
-        print("seed-node = %s:%d  %s # %s (%.2f ms)" % (node["url"], node["port"], ' ' * spaces, node["owner"], node["delay_ms"]))
+        node_string = ("seed-node = %s:%d  %s # %s (%.2f ms)" % (node["url"], node["port"], ' ' * spaces, node["owner"], node["delay_ms"]))
+        print(node_string)
+        f.write(node_string+'\n')
+    f.close()
