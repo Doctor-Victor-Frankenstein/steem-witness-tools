@@ -1,5 +1,6 @@
 from ping3 import ping, verbose_ping
 from datetime import datetime, timedelta, date
+import argparse
 
 unofficial_seed_nodes = [
     {'url': 'steemseed-fin.privex.io', 'port': 2001, 'owner': 'privex'},
@@ -31,8 +32,16 @@ unofficial_seed_nodes = [
 
 if __name__ == "__main__":
     
+    parser.add_argument('--input', nargs='?', const=1, type=str, default="seednodes.txt")
+    parser.add_argument("--maxdelay", help="Defines the maximum allowed delay in ms", nargs='?', const=1, type=int, default=100)
+    args = parser.parse_args()    
     
-    seed_nodes_list = "seednodes.txt"
+    seed_nodes_list = args.input
+    allowed_max_delay_ms = args.maxdelay
+    today = '%d/%d/%d' % (date.today().day, date.today().month, date.today().year)
+    filename_out = "sorted_seednodes_%s.txt" % today
+    
+    
     with open(seed_nodes_list) as f:
         content = f.readlines()
     content = [x.strip() for x in content]
@@ -54,7 +63,7 @@ if __name__ == "__main__":
         if not found:
             seed_nodes.append(node)
     
-    allowed_max_delay_ms = 100
+    
     
     node_list =[]
     for node in seed_nodes:
@@ -68,8 +77,7 @@ if __name__ == "__main__":
         node_list.append(node)
     sorted_nodes = sorted(node_list, key=lambda node: node['delay_ms'], reverse=False)
     
-    today = '%d/%d/%d' % (date.today().day, date.today().month, date.today().year)
-    filename_out = "sorted_seednodes_today.txt"
+
     f = open(filename_out, 'w')
     
     for node in sorted_nodes:
