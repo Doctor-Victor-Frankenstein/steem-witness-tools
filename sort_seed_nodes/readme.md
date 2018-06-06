@@ -40,7 +40,5 @@ The results are also stored in `sorted_seednodes_6_6_2018.txt`, the name is adap
 ___
 If you like what I'm doing, please consider @holger80 as one of your witnesses. You can use [steemconnect.com for approve your vote](https://v2.steemconnect.com/sign/account_witness_vote?witness=holger80&approve=True) or go to https://steemit.com/~witnesses and enter my name into the vote field:
 
-<center>
-![](https://cdn.steemitimages.com/DQmQAWB4b8KMXh8fi3M3dU8MaQtD2npkrTRHxLDLnv7wZRX/image.png)
-</center>
+![image.png](https://ipfs.busy.org/ipfs/QmWdfhuztZaJQkttRRhajrnTAwxUbxz4UoHdhfoJi2Ze9p)
 
